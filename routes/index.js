@@ -6,8 +6,12 @@ import comments from '../controllers/comments.js';
 import deleteComment from '../controllers/deleteComment.js';
 import deletePost from '../controllers/deletePost.js';
 import posts from '../controllers/posts.js';
+import updateComment from '../controllers/updateComment.js';
+import updatePost from '../controllers/updatePost.js';
 import commentValidation from '../middleware/commentValidation.js';
 import postValidate from '../middleware/postValidation.js';
+import updateCommentValidation from '../middleware/updateCommentValidation.js';
+import updatePostValidation from '../middleware/updatePostValidation.js';
 
 const router = express.Router();
 
@@ -31,5 +35,11 @@ router.delete('/deletecomment/:commentId?', deleteComment);
 
 // deleting a post together with all the comments in that post 
 router.delete('/deletepost/:postId?', deletePost);
+
+// Updating a post using the post Id 
+router.put('/updatepost/:postId?', updatePostValidation, updatePost);
+
+// Updating a comment using the comment Id 
+router.put('/updatecomment/:commentId?', updateCommentValidation, updateComment)
 
 export default router;
